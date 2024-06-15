@@ -10,6 +10,8 @@ using UnityEditor;
 
 public class Ui_Handler : MonoBehaviour
 {
+    MainData _instance;
+
     [SerializeField] TMP_Text playerName_MenuText;
     [SerializeField] TMP_Text playerScore_MenuText;
     [SerializeField] string playerName;
@@ -21,7 +23,11 @@ public class Ui_Handler : MonoBehaviour
 
     // Start is called before the first frame update
 
-   
+    private void Awake()
+    {
+        _instance = FindObjectOfType<MainData>();
+    }
+
     void Start()
     {
         GetStoredName();
@@ -41,18 +47,18 @@ public class Ui_Handler : MonoBehaviour
      
     private void GetStoredName()
     {
-        playerName = MainData.Instance.playerName;
+        playerName = _instance.current_playerName;
     }
 
     private void GetStoredScore()
     {
-        playerScore = MainData.Instance.playerScore;
+        playerScore = _instance.current_playerScore;
     }
 
     private string SetNewName()
     {
         playerName= playerInput.text;
-        MainData.Instance.playerName = playerName;
+        _instance.new_playerName = playerName;
         return playerName;
     }
 
@@ -61,12 +67,12 @@ public class Ui_Handler : MonoBehaviour
         if (playerName != null)
         {
             Debug.Log($"Name: {playerName} stored");
-            return playerName_MenuText.text = "Player Name >>> " + playerName;
+            return playerName_MenuText.text = "Best Player Name >>> " + playerName;
 
         }
         Debug.Log("No Name stored");
         playerName = playerInput.text;
-        return playerName_MenuText.text = "Player Name >>> " + playerName;
+        return playerName_MenuText.text = "Best Player Name >>> " + playerName;
 
     }
 
@@ -78,7 +84,7 @@ public class Ui_Handler : MonoBehaviour
             
         }
 
-        return playerScore_MenuText.text = "PlayerScore >>> " + playerScore;
+        return playerScore_MenuText.text = "Best Player Score >>> " + playerScore;
     }
 
     private void StartGame()
@@ -86,9 +92,9 @@ public class Ui_Handler : MonoBehaviour
         SceneManager.LoadScene(1);
     }
 
-    private void ExitGame()
+    public void ExitGame()
     {
-        MainData.Instance.SaveData();
+        _instance.SaveData();
 #if UNITY_EDITOR
         EditorApplication.ExitPlaymode();
 #else

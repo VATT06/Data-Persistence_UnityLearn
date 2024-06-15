@@ -421,7 +421,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 56.15
+  m_fontSize: 56.2
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -576,7 +576,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Enter name...
+  m_text: '    Enter name...'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -721,8 +721,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fda12b2af834294aa7cf35a6b9fc4b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerScore: 0
-  playerName: 
+  current_playerScore: 0
+  new_playerScore: 0
+  current_playerName: 
+  new_playerName: 
 --- !u!4 &370147953
 Transform:
   m_ObjectHideFlags: 0
@@ -957,7 +959,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 56.15
+  m_fontSize: 56.2
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1258,7 +1260,7 @@ RectTransform:
   m_Children:
   - {fileID: 965047074}
   m_Father: {fileID: 912001724}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -1451,8 +1453,8 @@ RectTransform:
   m_Children:
   - {fileID: 1431833951}
   - {fileID: 477859101}
-  - {fileID: 674974168}
   - {fileID: 1438019840}
+  - {fileID: 674974168}
   - {fileID: 543174}
   - {fileID: 640324585}
   m_Father: {fileID: 2034518535}
@@ -1663,7 +1665,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 70.15
+  m_fontSize: 70.1
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1743,7 +1745,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 912001724}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}

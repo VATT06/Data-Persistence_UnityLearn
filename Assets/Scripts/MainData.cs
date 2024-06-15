@@ -6,8 +6,10 @@ using UnityEngine;
 public class MainData : MonoBehaviour
 {
     public static MainData Instance;
-    public int playerScore;
-    public string playerName;
+    public int current_playerScore;
+    public int new_playerScore;
+    public string current_playerName;
+    public string new_playerName;
 
     private void Awake()
     {
@@ -28,14 +30,18 @@ public class MainData : MonoBehaviour
     class PlayerData
     {
         public string name;
+        public string newName;
         public int score;
+        public int newScore;
     }
 
     internal void SaveData()
     {
        PlayerData data = new PlayerData();
-        data.name = playerName;
-        data.score = playerScore;
+        data.name = current_playerName;
+        data.newName = new_playerName;
+        data.score = current_playerScore;
+        data.newScore = new_playerScore;
         string json = JsonUtility.ToJson(data);
         File.WriteAllText(Application.persistentDataPath + "/PlayerData", json);
     }
@@ -48,8 +54,10 @@ public class MainData : MonoBehaviour
             string json = File.ReadAllText(path);
             PlayerData data = JsonUtility.FromJson<PlayerData>(json);
 
-            playerName = data.name;
-            playerScore = data.score;
+            current_playerName = data.name;
+            current_playerScore = data.score;
+            new_playerName = data.newName;
+            new_playerScore = data.newScore;
         }
     }
 }
