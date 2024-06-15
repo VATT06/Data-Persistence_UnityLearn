@@ -31,7 +31,7 @@ public class MainData : MonoBehaviour
         public int score;
     }
 
-    private void SaveData()
+    internal void SaveData()
     {
        PlayerData data = new PlayerData();
         data.name = playerName;
@@ -40,7 +40,7 @@ public class MainData : MonoBehaviour
         File.WriteAllText(Application.persistentDataPath + "/PlayerData", json);
     }
 
-    private void LoadData()
+    internal void LoadData()
     {
         string path = Application.persistentDataPath + "/PlayerData";
         if (File.Exists(path))
