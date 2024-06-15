@@ -10,20 +10,27 @@ using UnityEditor;
 
 public class Ui_Handler : MonoBehaviour
 {
-    [SerializeField] TMP_Text playerName;
-    [SerializeField] TMP_Text playerScore;
+    [SerializeField] TMP_Text playerName_MenuText;
+    [SerializeField] TMP_Text playerScore_MenuText;
+    [SerializeField] string playerName;
+    [SerializeField] int playerScore;
 
     [SerializeField] Button startButton;
     [SerializeField] Button exitButton;
     [SerializeField] TMP_InputField playerInput;
 
     // Start is called before the first frame update
+
+   
     void Start()
     {
+        GetStoredName();
+        GetStoredScore();
         startButton.onClick.AddListener(StartGame);
         exitButton.onClick.AddListener(ExitGame);
-        playerInput.onEndEdit.AddListener(delegate { SetPlayerName(); });
-        playerScore.text = SetPlayerScore();
+        SetPlayerName(playerName);
+        SetPlayerScore();
+        playerInput.onEndEdit.AddListener(delegate { SetNewName(); });
     }
 
     // Update is called once per frame
@@ -32,26 +39,46 @@ public class Ui_Handler : MonoBehaviour
         
     }
      
-    private string SetPlayerName()
+    private void GetStoredName()
     {
-        playerName.text = "Player Name >>> "+MainData.Instance.playerName;
-        if (playerName.text == null)
+        playerName = MainData.Instance.playerName;
+    }
+
+    private void GetStoredScore()
+    {
+        playerScore = MainData.Instance.playerScore;
+    }
+
+    private string SetNewName()
+    {
+        playerName= playerInput.text;
+        MainData.Instance.playerName = playerName;
+        return playerName;
+    }
+
+    private string SetPlayerName(string playerName)
+    {
+        if (playerName != null)
         {
-            playerName.text = "Type your name...";
+            Debug.Log($"Name: {playerName} stored");
+            return playerName_MenuText.text = "Player Name >>> " + playerName;
+
         }
-        playerName.text = "Player Name >>> " + playerInput.text;
-        
-        return playerName.text;
+        Debug.Log("No Name stored");
+        playerName = playerInput.text;
+        return playerName_MenuText.text = "Player Name >>> " + playerName;
+
     }
 
     private string SetPlayerScore()
     {
-        playerScore.text = "PlayerScore >>> "+MainData.Instance.playerScore.ToString();
-        if(playerScore.text == null )
+        if(playerScore.ToString() == null )
         {
-            playerScore.text = "PlayerScore >>> 0";
+            playerScore = 0;
+            
         }
-        return playerScore.text;
+
+        return playerScore_MenuText.text = "PlayerScore >>> " + playerScore;
     }
 
     private void StartGame()
